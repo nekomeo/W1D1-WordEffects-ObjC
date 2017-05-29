@@ -26,27 +26,16 @@ int main(int argc, const char * argv[]) {
                 case 1:
                     NSLog(@"Input a string");
                     fgets(inputChars, 255, stdin);
-                    NSString *uppercase = [inputChars uppercaseString];
+                    NSString *convertedChar = [NSString stringWithUTF8String:inputChars];
+                    NSString *uppercase = [convertedChar uppercaseString];
                     NSLog(@"%@", uppercase);
                     break;
-                case 2:
-                    NSLog(@"Input a string");
-                    fgets(inputChars, 255, stdin);
-                    NSString *lowercase = [inputChars lowercaseString];
-                    NSLog(@"%@", lowercase);
-                    break;
-                case 3:
-                    NSLog(@"Enter a number");
-                    fgets(inputChars, 255, stdin);
-                    NSNumberFormatter *stringToNumber = [[NSNumberFormatter alloc] init];
-                    stringToNumber.numberStyle = NSNumberFormatterDecimalStyle;
-                    NSNumber *myNumber = [stringToNumber numberFromString:@"42"]; // Change this once you understand what's going on
-                    break;
-                case 4:
-                    NSLog(@"Enter a word");
-                default:
+                
+//                default:
                     break;
             }
+            printf("Would you like to play again? (y/n)\n");
+            scanf(" &c", again);
         }
     }
     return 0;
