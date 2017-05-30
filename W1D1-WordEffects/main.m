@@ -75,7 +75,7 @@ int main(int argc, const char * argv[]) {
                     break;
                 case 5: // Respond to a question or statement
                 {
-                    NSLog(@"Enter a string");
+                    NSLog(@"Enter a string:");
                     fgets(inputChars, 255, stdin);
                     NSString *sentence = [NSString stringWithUTF8String:inputChars];
                     if ([sentence containsString:@"?"])
@@ -91,11 +91,19 @@ int main(int argc, const char * argv[]) {
                         NSLog(@"%@", sentence);
                     }
                 }
+                case 6: // De-Space-It - Replace " " with "-"
+                {
+                    NSLog(@"Enter a sentence:");
+                    fgets(inputChars, 255, stdin);
+                    NSString *sentence = [NSString stringWithUTF8String:inputChars];
+                    NSString *newSentence = [sentence stringByReplacingOccurrencesOfString:@" " withString:@"-"];
+                    NSLog(@"Without spaces: %@", newSentence);
+                }
                 default:
                     break;
             }
-//            printf("Would you like to play again? (y/n)\n");
-//            scanf(" &c", again);
+////            printf("Would you like to play again? (y/n)\n");
+////            scanf(" &c", again);
         }
     }
     
