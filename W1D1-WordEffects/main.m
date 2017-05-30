@@ -8,30 +8,36 @@
 
 #import <Foundation/Foundation.h>
 
+void mainMenu()
+{
+    printf("1. Uppercase\n");
+    printf("2. Lowercase\n");
+    printf("3. Numberize\n");
+    printf("4. Canadianize\n");
+    printf("5. Respond\n");
+    printf("6. De-Space-It\n");
+    printf("7. Character count\n");
+    printf("0. Exit\n");
+}
+
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
         // 255 Unit long array of characters
         char inputChars[255];
-        char play[255];
-        int choice;
         
-        printf("Would you like to pick? ");
-        fgets(play, 255, stdin);
-        strtok(play, "\n");
-        NSMutableString *convertedPlay = [NSMutableString stringWithUTF8String:play];
-        
-        
-        NSLog(@"Input a string");
+        NSLog(@"Input a string"); // Limit input to 255 characters
         fgets(inputChars, 255, stdin);
         strtok(inputChars, "\n");
-        NSString *convertedChar = [NSString stringWithUTF8String:inputChars];
+        NSString *convertedChar = [NSString stringWithUTF8String:inputChars]; // Convert char array to an NSString object
         
-        while ([[convertedPlay lowercaseString]  isEqual: @"y"])
+        int selection;
+
+        do
         {
-            NSLog(@"\n1. Uppercase\n2. Lowercase\n3. Numberize\n4. Canadianize\n5. Respond\n6. De-Space-It\n7. Word count");
-            scanf(" %d", &choice);
+            mainMenu();
+            scanf(" %i", &selection);
             
-            switch (choice)
+            switch (selection)
             {
                 case 1: // Uppercase word entered
                 {
@@ -87,22 +93,16 @@ int main(int argc, const char * argv[]) {
                 {
                     NSUInteger *characterCount = [convertedChar length];
                     NSLog(@"Number of characters is: %lu", characterCount);
+                    break;
                 }
+                case 0:
+                    NSLog(@"Exiting");
+                    break;
                 default:
                     break;
             }
-//            NSLog(@"\nWould you like to play again? (y/n)");
-            
-            
-            char playA[255];
-            
-            fgets(playA, 255, stdin);
-            strtok(playA, "\n");
-//            convertedPlay = [NSMutableString stringWithUTF8String:playA];
-            
-            
-            
         }
-    }
+        while (selection != 0);
+        }
     return 0;
 }
