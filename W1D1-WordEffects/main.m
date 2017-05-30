@@ -13,31 +13,46 @@ int main(int argc, const char * argv[]) {
         
         char inputChars[255];
         char again;
-        int choice = 0;
+        char play;
+        int choice;
         
         printf("Which option would you like to pick?\n");
-        scanf("%c", &again);
+        scanf("%c", &choice);
         
-        if (choice == 'y')
-//        {
+        if (play == 'y')
+        {
+            NSLog(@"Uppercase");
+            NSLog(@"Lowercase");
+            NSLog(@"Numberize");
+            NSLog(@"Canadianize");
+            NSLog(@"Respond");
+            NSLog(@"De-Space-It");
+            scanf("", &choice);
+            
 //            char *again = "Please choose from the following";
 //            fgets(<#char *restrict#>, <#int#>, <#FILE *#>) // fgets the choice you want to pick
-            switch (choice) {
+            switch (choice)
+            {
                 case 1: // Uppercase word entered
                 NSLog(@"Input a string");
+                {
                     fgets(inputChars, 255, stdin);
                     NSString *convertedChar = [NSString stringWithUTF8String:inputChars];
                     NSString *uppercase = [convertedChar uppercaseString];
                     NSLog(@"%s uppercased is %@", inputChars, uppercase);
+                }
                     break;
                 case 2: // Lowercase word entered
+                {
                     NSLog(@"Input a string");
                     fgets(inputChars, 255, stdin);
                     NSString *convertedChar = [NSString stringWithUTF8String:inputChars];
                     NSString *lowercase = [convertedChar lowercaseString];
                     NSLog(@"%s lowercased is %@", inputChars, lowercase);
+                }
                     break;
                 case 3: // Change number from string to int/float/etc.
+                {
                     NSLog(@"Enter a number");
                     fgets(inputChars, 255, stdin);
                     strtok(inputChars, "\n");
@@ -46,19 +61,24 @@ int main(int argc, const char * argv[]) {
                     stringToNumber.numberStyle = NSNumberFormatterNoStyle;
                     NSNumber *myNumber = [stringToNumber numberFromString:convertedChar];
                     NSLog(@"The string %@ is converted to %@", convertedChar, myNumber);
+                }
                     break;
                 case 4: // Canadianize - add ", eh?" to the end of the input
+                {
                     NSLog(@"Enter a string");
                     fgets(inputChars, 255, stdin);
+                    strtok(inputChars, "\n");
                     NSMutableString *convertedChar = [NSString stringWithUTF8String:inputChars];
-                    NSMutableString *withEh = [convertedChar stringByAppendingString:@", eh?"];
+                    NSMutableString *canadianize = [convertedChar stringByAppendingString:@", eh?"];
+                    NSLog(@"String Canadianized is: %@", canadianize);
+                }
                     break;
-//                default:
-//                    break;
-//            }
-//            printf("Would you like to play again? (y/n)\n");
-//            scanf(" &c", again);
-//        }
+                default:
+                    break;
+            }
+            printf("Would you like to play again? (y/n)\n");
+            scanf(" &c", again);
+        }
     }
     
 //            char name[10];
