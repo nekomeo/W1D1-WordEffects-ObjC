@@ -73,11 +73,29 @@ int main(int argc, const char * argv[]) {
                     NSLog(@"String Canadianized is: %@", canadianize);
                 }
                     break;
+                case 5: // Respond to a question or statement
+                {
+                    NSLog(@"Enter a string");
+                    fgets(inputChars, 255, stdin);
+                    NSString *sentence = [NSString stringWithUTF8String:inputChars];
+                    if ([sentence containsString:@"?"])
+                    {
+                        NSLog(@"I don't know");
+                    }
+                    else if ([sentence containsString:@"!"])
+                    {
+                        NSLog(@"Whoa, calm down!");
+                    }
+                    else
+                    {
+                        NSLog(@"%@", sentence);
+                    }
+                }
                 default:
                     break;
             }
-            printf("Would you like to play again? (y/n)\n");
-            scanf(" &c", again);
+//            printf("Would you like to play again? (y/n)\n");
+//            scanf(" &c", again);
         }
     }
     
