@@ -8,61 +8,53 @@
 
 #import <Foundation/Foundation.h>
 
-void mainMenu()
-{
-    printf("1. Uppercase\n");
-    printf("2. Lowercase\n");
-    printf("3. Numberize\n");
-    printf("4. Canadianize\n");
-    printf("5. Respond\n");
-    printf("6. De-Space-It\n");
-    printf("7. Character count\n");
-    printf("0. Exit\n");
-}
-
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
-        // 255 Unit long array of characters
-        char inputChars[255];
-        
-        NSLog(@"Input a string"); // Limit input to 255 characters
-        fgets(inputChars, 255, stdin);
-        strtok(inputChars, "\n");
-        NSString *convertedChar = [NSString stringWithUTF8String:inputChars]; // Convert char array to an NSString object
-        
-        int selection;
 
-        do
+        char inputChars[255];
+        char choice [255];
+        char playAgain [255];
+        
+        int selection = 1;
+        
+        NSMutableString *convertedChar = [[NSMutableString alloc] init];
+        NSMutableString *convertPlay = [[NSMutableString alloc] initWithString:@"y"];
+        
+        while ([convertPlay isEqualToString:@"y"])
         {
-            mainMenu();
-            scanf(" %i", &selection);
+            NSLog(@"Input a string:"); // Limit input to 255 characters
+            fgets(inputChars, 255, stdin);
+            strtok(inputChars, "\n");
+            convertedChar = [NSMutableString stringWithUTF8String:inputChars]; // Convert char array to an NSString object
+            
+            NSLog(@"Enter a choice:\n1) UPPERCASE\n2) lowercase\n3) numberize\n4) Canadianize it\n5) Respond\n6) De-Space-It");
+            fgets(choice, 255, stdin);
+            strtok(choice, "\n");
+            NSString *convertChoice = [NSString stringWithUTF8String:choice];
+            selection = [convertChoice intValue];
             
             switch (selection)
             {
-                case 1: // Uppercase word entered
+                case 1: // Change to all uppercase.
                 {
-                    NSString *uppercase = [convertedChar uppercaseString];
-                    NSLog(@"%s uppercased is %@", inputChars, uppercase);
+                    NSString *upperCase = [convertedChar uppercaseString];
+                    NSLog(@"Uppercase is: %@", upperCase);
                     break;
                 }
-                case 2: // Lowercase word entered
+                case 2: // Change to all lowercase.
                 {
-                    NSString *lowercase = [convertedChar lowercaseString];
-                    NSLog(@"%s lowercased is %@", inputChars, lowercase);
+                    NSString *lowerCase = [convertedChar lowercaseString];
+                    NSLog(@"Lowercase is: %@", lowerCase);
                     break;
                 }
                 case 3: // Change number from string to int/float/etc.
                 {
-                    strtok(inputChars, "\n");
-                    NSNumberFormatter *stringToNumber = [[NSNumberFormatter alloc] init];
-                    stringToNumber.numberStyle = NSNumberFormatterNoStyle;
-                    NSNumber *myNumber = [stringToNumber numberFromString:convertedChar];
-                    NSLog(@"The string %@ is converted to %@", convertedChar, myNumber);
+                    NSInteger numberized = [convertedChar integerValue];
+                    NSLog(@"The string number %@ is converted to the number %lu", convertedChar, numberized);
                     break;
                 }
-                case 4: // Canadianize - add ", eh?" to the end of the input
+                case 4: // Add ', eh?' to the end of input.
                 {
-                    strtok(inputChars, "\n");
                     NSString *canadianize = [convertedChar stringByAppendingString:@", eh?"];
                     NSLog(@"String Canadianized is: %@", canadianize);
                     break;
@@ -86,23 +78,19 @@ int main(int argc, const char * argv[]) {
                 case 6: // De-Space-It - Replace " " with "-"
                 {
                     NSString *newSentence = [convertedChar stringByReplacingOccurrencesOfString:@" " withString:@"-"];
-                    NSLog(@"Without spaces: %@", newSentence);
+                    NSLog(@"With -'s: %@", newSentence);
                     break;
                 }
-                case 7: // Character count - Count the number of characters in the string
-                {
-                    NSUInteger *characterCount = [convertedChar length];
-                    NSLog(@"Number of characters is: %lu", characterCount);
-                    break;
-                }
-                case 0:
-                    NSLog(@"Exiting");
-                    break;
                 default:
-                    break;
+                break;
             }
+            
+            NSLog(@"Would you like to play again? (y/n)");
+            fgets(playAgain, 255, stdin);
+            strtok(playAgain, "\n");
+            convertPlay = [NSMutableString stringWithUTF8String:playAgain];
+            
         }
-        while (selection != 0);
-        }
+    }
     return 0;
 }
