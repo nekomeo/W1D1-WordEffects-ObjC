@@ -27,7 +27,7 @@ int main(int argc, const char * argv[]) {
             strtok(inputChars, "\n");
             convertedChar = [NSMutableString stringWithUTF8String:inputChars]; // Convert char array to an NSString object
             
-            NSLog(@"Enter a choice:\n1) UPPERCASE\n2) lowercase\n3) numberize\n4) Canadianize it\n5) Respond\n6) De-Space-It");
+            NSLog(@"Enter a choice:\n1) UPPERCASE\n2) lowercase\n3) numberize\n4) Canadianize it\n5) Respond\n6) De-Space-It\n7) Character count");
             fgets(choice, 255, stdin);
             strtok(choice, "\n");
             NSString *convertChoice = [NSString stringWithUTF8String:choice];
@@ -79,6 +79,12 @@ int main(int argc, const char * argv[]) {
                 {
                     NSString *newSentence = [convertedChar stringByReplacingOccurrencesOfString:@" " withString:@"-"];
                     NSLog(@"With -'s: %@", newSentence);
+                    break;
+                }
+                case 7:
+                {
+                    NSInteger characterCount = [convertedChar length];
+                    NSLog(@"Total number of characters is: %lu", characterCount);
                     break;
                 }
                 default:
