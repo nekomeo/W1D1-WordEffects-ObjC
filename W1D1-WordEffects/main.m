@@ -50,7 +50,15 @@ int main(int argc, const char * argv[]) {
                 case 3: // Change number from string to int/float/etc.
                 {
                     NSInteger numberized = [convertedChar integerValue];
-                    NSLog(@"The string number %@ is converted to the number %lu", convertedChar, numberized);
+                    
+                    if (numberized == 0)
+                    {
+                        NSLog(@"Cannot convert to number");
+                    }
+                    else
+                    {
+                        NSLog(@"%@ as a string is converted to the integer %ld", convertedChar, numberized);
+                    }
                     break;
                 }
                 case 4: // Add ', eh?' to the end of input.
